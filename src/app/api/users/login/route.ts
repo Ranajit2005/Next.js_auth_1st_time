@@ -16,7 +16,7 @@ export async function POST(request: NextRequest) {
 
         const user = await User.findOne({email})    //find the user on the basis of email
 
-        if(!user){  //if the user is not found
+        if(!user){  //if user is not found
             return NextResponse.json({error: "User does not exists"}, {status: 400})
         }
         console.log("User found");
