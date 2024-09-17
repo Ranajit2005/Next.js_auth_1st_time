@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import bcryptjs from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
-connect(); //connecting to the database
+connect();      //connecting to the database
 
 export async function POST(request: NextRequest) {
     try{
@@ -22,9 +22,9 @@ export async function POST(request: NextRequest) {
         console.log("User found");
 
 
-        const validPassword = await bcryptjs.compare(password, user.password) //We bcript the user's password and then we comparing it the password
+        const validPassword = await bcryptjs.compare(password, user.password) //We bcript the user's password from database and then we comparing it with the password
 
-        if(!validPassword){ //if the password is not valid
+        if(!validPassword){      //if the password is not valid
             return NextResponse.json({error: "Invalid password"}, {status: 400})
         }
 
@@ -39,6 +39,7 @@ export async function POST(request: NextRequest) {
         
         const response = NextResponse.json({message: "Login successful",success :true }) 
 
+        //When user login, we set some cookies in his browser
         response.cookies.set("token", token, {
             httpOnly: true,
         })  //cookies set as key value pair. Here key is "token" and value is token. httpOnly is true so that the token is not accessible by the client side javascript
