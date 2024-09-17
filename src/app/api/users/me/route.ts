@@ -6,7 +6,6 @@ import { getDataFromToken } from "@/helpers/DataFromToken";
 connect(); //connecting to the database
 
 export async function POST(request: NextRequest){
-
     
     const userId = await getDataFromToken(request); //get user id from the token
     const user = await User.findOne({_id: userId}).select("-password"); //find the user on the basis of user id from database. We use select("-password") to avoid sending the password in the response
