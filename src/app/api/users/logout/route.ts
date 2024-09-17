@@ -14,7 +14,7 @@ export async function GET(request: NextRequest){
 
         //while log out, we delete all cookies
         response.cookies.set("token","",{   //here "token" value set as empty ->""
-            httpOnly:true,
+            httpOnly: true,
             expires: new Date(0)
         })
 
