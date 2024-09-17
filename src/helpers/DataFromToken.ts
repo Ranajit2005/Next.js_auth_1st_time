@@ -10,7 +10,7 @@ export const getDataFromToken = (request: NextRequest) =>{
 
         const decodedToken: any = jwt.verify(token, process.env.TOKEN_SECRET!); //verifying the token with the secret key
 
-        return decodedToken.id;    //returning the data from the token
+        return decodedToken.id;    //returning the user id from the token
 
     }catch(error: any){
         throw new Error(error.message)
