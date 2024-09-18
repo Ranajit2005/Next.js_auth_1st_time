@@ -5,7 +5,7 @@ connect();      //connecting to the database
 
 export async function GET(request: NextRequest){
 
-    try{    
+    try{
 
         const response = NextResponse.json({
             message : "Logout successfully",
