@@ -11,7 +11,7 @@ export async function POST(request: NextRequest){ //In next js, if we give POST 
     //Now it may give error, so we create a try catch block
 
     try{
-        console.log("test 1")
+
         const reqBody = await request.json()  //JSON data comes from the body
         const {username, email,password} = reqBody  //Here we extract those data
         console.log(reqBody);  

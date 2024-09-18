@@ -20,7 +20,7 @@ export async function POST(request: NextRequest){
         console.log(user);
 
         //if the user is found then we update the user
-        user.isVerified = true
+        user.isVarified = true
         user.verifyToken = undefined
         user.verifyTokenExpiry = undefined
 
