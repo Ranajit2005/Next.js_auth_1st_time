@@ -8,10 +8,10 @@ connect()  //this the connect function which we create in dbConfig
 
 export async function POST(request: NextRequest){ //In next js, if we give POST function, means it acts as POST method
 
-    //Now it may giv error, so we create a try catch block
+    //Now it may give error, so we create a try catch block
 
     try{
-
+        console.log("test 1")
         const reqBody = await request.json()  //JSON data comes from the body
         const {username, email,password} = reqBody  //Here we extract those data
         console.log(reqBody);  
@@ -44,9 +44,6 @@ export async function POST(request: NextRequest){ //In next js, if we give POST 
             success: true,
             savedUser
         })
-
-
-
 
     }catch(error:any){
 

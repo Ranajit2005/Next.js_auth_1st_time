@@ -7,15 +7,19 @@ export const sendEmail = async ({ email, emailType, userId }: any) => {
     //Here we genarate a hased token whose based salt length is 10
     const hasedToken = await bcriptjs.hash(userId.toString(), 10);
 
-    if (emailType == "VERIFY") {
+    if (emailType === "VERIFY") {
       await User.findByIdAndUpdate(userId, {
-        verifyToken: hasedToken,
-        verifyTokenExpiry: Date.now() + 3600000,
+        $set: {     //Here we set the verifyToken and verifyTokenExpiry
+          verifyToken: hasedToken,
+          verifyTokenExpiry: Date.now() + 3600000,
+        },
       });
     } else if (emailType === "RESET") {
       await User.findByIdAndUpdate(userId, {
-        forgotPasswordToken: hasedToken,
-        forgotPasswordTokenExpiry: Date.now() + 3600000,
+        $set: {     //Here we set the forgotPasswordToken and forgotPasswordTokenExpiry
+          forgotPasswordToken: hasedToken,
+          forgotPasswordTokenExpiry: Date.now() + 3600000,
+        },
       });
     }
 
@@ -36,15 +40,15 @@ export const sendEmail = async ({ email, emailType, userId }: any) => {
       to: email, // list of receivers
       subject:
         emailType === "VERIFY" ? "Verify your email" : "Reset your password", // Subject line
-      html:
-      `<p>
+      html: `<p>
           Click <a href="${
             process.env.DOMAIN
           }/verifyemail?token=${hasedToken}">here</a> to ${
         emailType === "VERIFY" ? "verify your email" : "reset your password"
       }
           or copy and paste the link below in your browser.
-          <br>      
+          <br>
+          ${process.env.DOMAIN}/verifyemail?token=${hasedToken}   
       </p>`,
     };
 
