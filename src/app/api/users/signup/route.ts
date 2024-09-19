@@ -9,7 +9,6 @@ connect()  //this the connect function which we create in dbConfig
 export async function POST(request: NextRequest){ //In next js, if we give POST function, means it acts as POST method
 
     //Now it may give error, so we create a try catch block
-
     try{
 
         const reqBody = await request.json()  //JSON data comes from the body
