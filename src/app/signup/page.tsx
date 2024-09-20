@@ -1,7 +1,7 @@
 
 import React from 'react'
 
-export default function page() {
+export default function SignUpPage() {
   return (
     <h1>Sign up</h1>
   )
