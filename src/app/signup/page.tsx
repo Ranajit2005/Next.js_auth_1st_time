@@ -32,7 +32,15 @@ export default function SignUpPage() {
     }
   }
 
+  useEffect(() => {
+    if(user.email.length > 0 && user.password.length > 0 && user.username.length > 0){
+      setButtonDisable(false)
+    }else{
+      setButtonDisable(true)
+    }
+  },[user])
+
   return (
-    <h1>Sign up</h1>
+    <h1>Sign up Now</h1>
   )
 }
