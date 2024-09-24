@@ -13,7 +13,7 @@ export function middleware(request: NextRequest) {
   const token = request.cookies.get("token")?.value || "";   //It is used to get the token from the cookies.
 
   if (isPublicPath && token) {
-    return NextResponse.redirect(new URL("/", request.url));   //If the token is present then it will redirect to the home page.
+    return NextResponse.redirect(new URL("/profile", request.url));   //If the token is present then it will redirect to the home page.
   }
 
   if (!isPublicPath && !token) {
