@@ -22,7 +22,6 @@ export function middleware(request: NextRequest) {
 
 }
 
-// See "Matching Paths" below to learn more
 // Here macher means in which router, we want to apply this middleware.
 export const config = {
   matcher: [
