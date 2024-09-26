@@ -22,7 +22,7 @@ export function middleware(request: NextRequest) {
 
 }
 
-// Here macher means in which router or page, we want to apply this middleware.
+// Here macher means in which router, we want to apply this middleware.
 export const config = {
   matcher: [
     '/',
