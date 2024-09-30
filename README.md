@@ -20,6 +20,27 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Features
+
+- User registration with email verification
+- Login functionality
+- Password reset via email
+- Secure password hashing
+
+## Tech Stack
+
+- **Next.js**
+- **MongoDB**
+- **Nodemailer**
+- **bcryptjs**
+- **dotenv**
+
+### Prerequisites
+
+- Node.js (v14 or higher)
+- MongoDB (local or cloud instance)
+- Email service provider for Nodemailer
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
