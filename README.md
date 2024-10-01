@@ -40,6 +40,7 @@ This project uses [`next/font`](https://nextjs.org/docs/app/building-your-applic
 - Node.js (v14 or higher)
 - MongoDB (local or cloud instance)
 - Email service provider for Nodemailer
+- Bcript js, encript js and salt for password security
 
 ## Learn More
 
