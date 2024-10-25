@@ -9,6 +9,23 @@ export default function ProfilePage() {
 
   const router = useRouter()
   const [data,setData] = useState("nothing")
+
+  const getErrorMessage = (error: unknown):string => {
+    let message : string
+    
+    if (error instanceof Error) {
+      message = error.message;
+    } else if (typeof error === "string") {
+      message = error;
+    } else if (typeof error === "object" && error !== null && "message" in error) {
+      message = JSON.stringify(error);
+
+    }else {
+      message = "An error occurred";
+    }
+
+    return message;
+  }
   
   const getUserDetails = async () => {
     try {
@@ -16,10 +33,13 @@ export default function ProfilePage() {
       const response = await axios.post("/api/users/me")
       console.log("Profile data", response.data.data._id)
       setData(response.data.data._id)
-    } catch (error: any) {
+    } catch (error: unknown) {
 
       console.log("Profile data failed")
-      toast.error(error.message)
+      return {
+        error : getErrorMessage(error),
+      }
+      // toast.error(error.message)
     }
   }
 
@@ -29,9 +49,12 @@ export default function ProfilePage() {
       toast.success("Logout successfully")
       router.push("/login")
 
-    } catch (error:any) {
+    } catch (error: unknown) {
       console.log("Logout failed")
-      toast.error(error.message)
+      return {
+        error : getErrorMessage(error),
+      }
+      // toast.error(error.message)
 
     }
   }

@@ -6,6 +6,23 @@ import Link from "next/link";
 export default function VerifyEmailPage() {
   // const router = useRouter();
 
+  const getErrorMessage = (error: unknown):string => {
+    let message : string
+    
+    if (error instanceof Error) {
+      message = error.message;
+    } else if (typeof error === "string") {
+      message = error;
+    } else if (typeof error === "object" && error !== null && "message" in error) {
+      message = JSON.stringify(error);
+
+    }else {
+      message = "An error occurred";
+    }
+
+    return message;
+  }
+
   const [token, setToken] = useState(""); //We are taking the token from the user
   const [verified, setVerified] = useState(false); //We are taking the verified from the user
   const [error, setError] = useState(false); //We are taking the error from the user
@@ -16,9 +33,12 @@ export default function VerifyEmailPage() {
 
       setVerified(true); //If the email is verified then we set the verified to true
       setError(false); //If the email is verified then we set the error to false
-    } catch (error: any) {
+    } catch (error: unknown) {
       setError(true);
-      console.log(error.response.data);
+      console.log("Email not verified");
+      return {
+        error : getErrorMessage(error),
+      }
     }
   };
 

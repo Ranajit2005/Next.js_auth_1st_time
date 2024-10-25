@@ -2,12 +2,29 @@
 
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { toast } from "react-hot-toast";
+// import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation"; // check this hooks comes from next/navigation
 import Link from "next/link";
 
 export default function SignUpPage() {
   const router = useRouter();
+
+  const getErrorMessage = (error: unknown):string => {
+    let message : string
+    
+    if (error instanceof Error) {
+      message = error.message;
+    } else if (typeof error === "string") {
+      message = error;
+    } else if (typeof error === "object" && error !== null && "message" in error) {
+      message = JSON.stringify(error);
+
+    }else {
+      message = "An error occurred";
+    }
+
+    return message;
+  }
 
   const [user, setUser] = useState({
     email: "",
@@ -26,9 +43,12 @@ export default function SignUpPage() {
       const response = await axios.post("/api/users/signup", user); //useing axios we send the data to the backend signup
       console.log("Signup successfully", response.data); //If signup successfully then we get the data
       router.push("/login"); //After signup we redirect to login page
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.log("SignUp failed");
-      toast.error(error.message);
+      return {
+        error : getErrorMessage(error),
+      }
+      // toast.error(error.message);
     }
   };
 

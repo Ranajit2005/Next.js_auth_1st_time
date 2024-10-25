@@ -29,7 +29,14 @@ export async function POST(request: NextRequest){
         //returning the response
         return NextResponse.json({message: "Email verified successfully",success: true},{status: 200})
         
-    }catch(error :any){
+    }catch(error: any){
+
+        // if (error instanceof ApiError) {
+        //     return NextResponse.json({ error: error.message }, { status: error.status });
+        // }
+        
+        // // Handle unexpected errors
+        // return NextResponse.json({ error: "Internal server error" }, { status: 500 });
 
         return NextResponse.json({error: error.message},{status: 500})
 
